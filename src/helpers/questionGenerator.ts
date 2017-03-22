@@ -36,19 +36,19 @@ export function getQuestion(): {answer: number, question: string} {
       case 2:
       case 3:
         answer += value;
-        question += `, + ${value}`;
+        question += ` plus ${value}.`;
         break;
       case 4:
       case 5:
       case 6:
         answer -= value;
-        question += `, - ${value}`;
+        question += ` minus ${value}.`;
         break;
       case 7:
       case 8:
       case 9:
         answer *= value;
-        question += `, * ${value}`;
+        question += ` multiplied by ${value}.`;
         break;
       default:
         // should never happen
@@ -58,7 +58,7 @@ export function getQuestion(): {answer: number, question: string} {
 
   return {
     answer,
-    question
+    question: question.substring(0, question.length - 1) // strip off the final . because we get a ?
   };
 }
 

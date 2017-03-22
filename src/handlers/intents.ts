@@ -42,7 +42,7 @@ export function handleAnswer(request: Request, response: Response): void {
       question
     });
 
-    response.speechText = `Okay ${answer} questions coming up! Question one, What is ${question.question}?`;
+    response.speechText = `Okay! ${answer} questions coming up! Question one, What is ${question.question}?`;
     response.repomptText = `What is ${question.question}?`;
     response.send();
     return;
