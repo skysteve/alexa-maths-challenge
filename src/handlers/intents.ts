@@ -81,7 +81,7 @@ export function handleAnswer(request: Request, response: Response): void {
   // store values
   response.addSessionAttributes({
     currentQuestionNumber,
-    totalCorrect: 0,
+    totalCorrect,
     question
   });
 
