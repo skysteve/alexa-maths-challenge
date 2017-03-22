@@ -7,10 +7,8 @@ export function handleAnswer(request: Request, response: Response): void {
   const requestedCount = request.getSessionAttribute('requestedQuestionCount');
   let currentQuestionNumber = request.getSessionAttribute('currentQuestionNumber');
 
-  console.log('** requested', requestedCount, 'current', currentQuestionNumber);
   // if we haven't requested anything and there's no current question return out
   if (!requestedCount && !currentQuestionNumber) {
-    console.log('no requested count or question number');
     response.speechText = 'Sorry I didn\'t understand that, please try saying "Alexa open maths challenge"';
     return response.send();
   }
@@ -64,7 +62,6 @@ export function handleAnswer(request: Request, response: Response): void {
     answerFeedback = `That answer is wrong, ${askedQuestion.question} equals ${answer}`;
   }
 
-  console.log('Current question', currentQuestionNumber, 'total questions', totalQuestions);
   // if the user has had the requested number of questions - we're done!
   if (currentQuestionNumber >= totalQuestions) {
     response.speechText = `${answerFeedback}. Thank you for playing, you got ${totalCorrect} of ${totalQuestions} correct`;
