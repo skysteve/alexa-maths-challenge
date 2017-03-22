@@ -59,7 +59,7 @@ export function handleAnswer(request: Request, response: Response): void {
     totalCorrect += 1;
     answerFeedback = `Correct! ${askedQuestion.question} equals ${answer}`;
   } else {
-    answerFeedback = `That answer is wrong, ${askedQuestion.question} equals ${answer}`;
+    answerFeedback = `That answer is wrong, ${askedQuestion.question} equals ${askedQuestion.answer}`;
   }
 
   // if the user has had the requested number of questions - we're done!
