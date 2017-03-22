@@ -64,7 +64,7 @@ export function handleAnswer(request: Request, response: Response): void {
     answerFeedback = `That answer is wrong, ${askedQuestion.question} equals ${answer}`;
   }
 
-  console.log('Current question', currentQuestionNumber, 'total questions', totalQuestions)
+  console.log('Current question', currentQuestionNumber, 'total questions', totalQuestions);
   // if the user has had the requested number of questions - we're done!
   if (currentQuestionNumber >= totalQuestions) {
     response.speechText = `${answerFeedback}. Thank you for playing, you got ${totalCorrect} of ${totalQuestions} correct`;
