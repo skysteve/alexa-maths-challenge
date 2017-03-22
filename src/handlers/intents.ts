@@ -4,6 +4,14 @@ import {getQuestion} from '../helpers/questionGenerator';
 
 export function handleAnswer(request: Request, response: Response): void {
   const answer = request.getSlotValue('Answer');
+  const requestedCount = request.getSessionAttribute('requestedQuestionCount');
+  let currentQuestionNumber = request.getSessionAttribute('currentQuestionNumber');
+
+  // if we haven't requested anything and there's no current question return out
+  if (!requestedCount && !currentQuestionNumber) {
+    response.speechText = 'Sorry I didn\'t understand that, please try saying "Alexa open maths challenge"';
+    return response.send();
+  }
 
   // if user has been asked how many questions they want, generate questions and serve them up
   if (request.getSessionAttribute('requestedQuestionCount')) {
@@ -20,7 +28,7 @@ export function handleAnswer(request: Request, response: Response): void {
 
     response.addSessionAttributes({
       totalQuestions: answer,
-      currentQuestion: 1,
+      currentQuestionNumber: 1,
       totalCorrect: 0,
       question
     });
@@ -31,9 +39,8 @@ export function handleAnswer(request: Request, response: Response): void {
     return;
   }
 
-  let currentQuestion = request.getSessionAttribute('currentQuestion');
   let totalCorrect = request.getSessionAttribute('totalCorrect');
-  const totalQuestions = request.getSessionAttribute('currentQuestion');
+  const totalQuestions = request.getSessionAttribute('currentQuestionNumber');
   const askedQuestion = request.getSessionAttribute('question');
   const bCorrect = (answer === askedQuestion.answer);
   let answerFeedback;
@@ -47,26 +54,26 @@ export function handleAnswer(request: Request, response: Response): void {
   }
 
   // if the user has had the requested number of questions - we're done!
-  if (currentQuestion >= totalQuestions) {
+  if (currentQuestionNumber >= totalQuestions) {
     response.speechText = `${answerFeedback}. Thank you for playing, you got ${totalCorrect} of ${totalQuestions} correct`;
     response.endSession = true;
     return response.send();
   }
 
   // increment question counter
-  currentQuestion += 1;
+  currentQuestionNumber += 1;
 
   // get the next question
   const question = getQuestion();
 
   // store values
   response.addSessionAttributes({
-    currentQuestion,
+    currentQuestionNumber,
     totalCorrect: 0,
     question
   });
 
-  response.speechText = `${answerFeedback}. Question ${currentQuestion}, What is ${question.question}?`;
+  response.speechText = `${answerFeedback}. Question ${currentQuestionNumber}, What is ${question.question}?`;
   response.repomptText = `What is ${question.question}?`;
   response.send();
   return;
