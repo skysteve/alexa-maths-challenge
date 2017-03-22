@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/skysteve/alexa-maths-challenge/issues"
   },
-  "homepage": "https://github.com/skysteve/alexa-maths-challenge#readme"
+  "homepage": "https://github.com/skysteve/alexa-maths-challenge#readme",
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "gulp": "^3.9.1"
+  }
 }

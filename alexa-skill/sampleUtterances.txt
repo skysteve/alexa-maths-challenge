@@ -1,0 +1,7 @@
+GetBinType what bin should I put out
+GetBinType what bin should I put out next
+GetBinType what bin should I put out tomorrow
+
+GetBinType which bin should I put out
+GetBinType which bin should I put out next
+GetBinType which bin should I put out tomorrow
