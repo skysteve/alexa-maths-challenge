@@ -26,6 +26,8 @@ export function handler(event: AlexaCustomSkillRequest, context: any, callback: 
         return response.sendUnknownRequest();
     }
 
+    // TODO Handle stop/cancel
+
     // handle intents
     switch (request.intentName) {
       case 'HandleAnswer':

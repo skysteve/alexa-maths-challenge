@@ -1,6 +1,6 @@
 {
   "intents": [
-    {"intent": "HandleAnswer", "slots": [{"name": "Answer", "type": "AMAZON.Number"}]},
+    {"intent": "HandleAnswer", "slots": [{"name": "Answer", "type": "AMAZON.NUMBER"}]},
     {"intent": "AMAZON.HelpIntent"},
     {"intent": "AMAZON.StopIntent"},
     {"intent": "AMAZON.CancelIntent"}
