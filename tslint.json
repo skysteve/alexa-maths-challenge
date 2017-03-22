@@ -1,0 +1,58 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "no-require-imports": false,
+    "jsdoc-format": false,
+    "interface-name": false,
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ],
+    "ordered-imports": false,
+    "max-line-length": false,
+    "arrow-parens": false,
+    "prefer-for-of": false,
+    "adjacent-overload-signatures": false,
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
+    "object-literal-sort-keys": false,
+    "no-debugger": true,
+    "no-eval": true,
+    "prefer-const": true,
+    "curly": true,
+    "no-shadowed-variable": true,
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "triple-equals": true,
+    "no-var-requires": true,
+    "no-trailing-whitespace": true,
+    "no-duplicate-variable": true,
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "never",
+        "singleline": "never"
+      }
+    ],
+    "array-type": [
+      true,
+      "generic"
+    ],
+    "one-variable-per-declaration": [
+      true,
+      "ignore-for-loop"
+    ],
+    "whitespace": [
+      true
+    ],
+    "no-console": false,
+    "variable-name": false
+  }
+}
