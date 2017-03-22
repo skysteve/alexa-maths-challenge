@@ -23,15 +23,17 @@ function random(min: number, max: number): number {
 export function getQuestion(): {answer: number, question: string} {
   // length of question should be between 3-6 items long (this may become an option in dynamo at some point, maybe difficulty level)
   const length = random(2, 4);
+  const min = 1;
+  const max = 10;
 
   // get the initial value
-  let answer = random(1, 10);
+  let answer = random(min, max * 2.5); // greater starting value
   let question = `${answer}`;
 
   for (let i = 0; i < length; i++) {
-    const value = random(1, 10);
+    let value = random(min, max);
 
-    switch (random(1, 6)) { // TODO 6 should be 9
+    switch (random(1, 6)) { // TODO 6 should be 9 in medium mode
       case 1:
       case 2:
       case 3:
@@ -42,6 +44,28 @@ export function getQuestion(): {answer: number, question: string} {
       case 5:
       case 6:
         answer -= value;
+
+        let safety = 0;
+
+        // can't have negative numbers
+        while (answer < 0) {
+          // add the number back on
+          answer += value;
+
+          // get a new random number
+          value = random(min, max);
+          answer -= value;
+
+          // stop ourselves going into infinite loop
+          safety += 1;
+
+          // this shouldn't happen, but just in case
+          if (safety >= 10 && answer < 0) {
+            value = 0;
+            break;
+          }
+        }
+
         question += ` minus ${value},`;
         break;
       case 7:
