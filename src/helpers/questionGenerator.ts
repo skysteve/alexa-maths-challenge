@@ -1,3 +1,11 @@
+/*
+TODO - implement difficulty level
+easy: only addition and subtraction
+medium: also multiplication
+hard: as with medium but longer
+very hard: as with hard but with division
+ */
+
 /**
  * Get a random int between in and max
  * @param min {number}
@@ -13,7 +21,7 @@ function random(min: number, max: number): number {
  * @returns {{answer: number, question: *}}
  */
 export function getQuestion(): {answer: number, question: string} {
-  // length of question should be between 3-6 items long (this may become an option in dynamo at some point)
+  // length of question should be between 3-6 items long (this may become an option in dynamo at some point, maybe difficulty level)
   const length = random(2, 4);
 
   // get the initial value
