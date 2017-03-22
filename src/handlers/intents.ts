@@ -1,6 +1,6 @@
 import {Request} from '../Request';
 import {Response} from '../Response';
-import {getQuestion} from '../helpers/questionGenerator';
+import {getQuestion, getCongratulationsMessage} from '../helpers/questionGenerator';
 
 export function handleAnswer(request: Request, response: Response): void {
   const answer = Number(request.getSlotValue('Answer'));
@@ -64,7 +64,7 @@ export function handleAnswer(request: Request, response: Response): void {
 
   // if the user has had the requested number of questions - we're done!
   if (currentQuestionNumber >= totalQuestions) {
-    response.speechText = `${answerFeedback}. Thank you for playing, you got ${totalCorrect} of ${totalQuestions} correct`;
+    response.speechText = `${answerFeedback}. Thank you for playing, you got ${totalCorrect} out of ${totalQuestions} questions correct. ${getCongratulationsMessage(totalQuestions, totalCorrect)}`;
     response.endSession = true;
     return response.send();
   }

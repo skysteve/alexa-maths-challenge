@@ -61,3 +61,28 @@ export function getQuestion(): {answer: number, question: string} {
     question
   };
 }
+
+/**
+ * Get a message for the user once they've finished with a congratulations message (if earned)
+ * @param totalQuestions
+ * @param questionsCorrect
+ * @returns {string}
+ */
+export function getCongratulationsMessage(totalQuestions: number, questionsCorrect: number) {
+  const percentage = (questionsCorrect/totalQuestions) * 100;
+
+  if (percentage === 100) {
+    return 'A perfect score!';
+  }
+
+  if (percentage >= 75) {
+    return 'Excellent work!';
+  }
+
+  if (percentage >= 50) {
+    return 'Well done!';
+  }
+
+  // user got less than 50% right - boo
+  return 'Better luck next time';
+}
