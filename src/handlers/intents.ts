@@ -3,13 +3,20 @@ import {Response} from '../Response';
 import {getQuestion} from '../helpers/questionGenerator';
 
 export function handleAnswer(request: Request, response: Response): void {
-  const answer = request.getSlotValue('Answer');
+  const answer = Number(request.getSlotValue('Answer'));
   const requestedCount = request.getSessionAttribute('requestedQuestionCount');
   let currentQuestionNumber = request.getSessionAttribute('currentQuestionNumber');
 
   // if we haven't requested anything and there's no current question return out
   if (!requestedCount && !currentQuestionNumber) {
     response.speechText = 'Sorry I didn\'t understand that, please try saying "Alexa open maths challenge"';
+    return response.send();
+  }
+
+  // if answer isn't a number - error
+  if (isNaN(answer)) {
+    response.speechText = 'Sorry I didn\'t understand that, your answer must be a number';
+    response.endSession = false;
     return response.send();
   }
 
