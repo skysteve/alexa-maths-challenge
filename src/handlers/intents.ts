@@ -7,6 +7,7 @@ export function handleAnswer(request: Request, response: Response): void {
   const requestedCount = request.getSessionAttribute('requestedQuestionCount');
   let currentQuestionNumber = request.getSessionAttribute('currentQuestionNumber');
 
+  console.log('**', currentQuestionNumber, requestedCount);
   // if we haven't requested anything and there's no current question return out
   if (!requestedCount && !currentQuestionNumber) {
     response.speechText = 'Sorry I didn\'t understand that, please try saying "Alexa open maths challenge"';
@@ -33,9 +34,11 @@ export function handleAnswer(request: Request, response: Response): void {
 
     const question = getQuestion();
 
+    currentQuestionNumber = 1;
+
     response.addSessionAttributes({
       totalQuestions: answer,
-      currentQuestionNumber: 1,
+      currentQuestionNumber,
       totalCorrect: 0,
       question
     });
