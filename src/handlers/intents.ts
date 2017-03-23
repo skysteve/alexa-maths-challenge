@@ -57,7 +57,7 @@ export function handleAnswer(request: Request, response: Response): void {
   // check if the answer was correct
   if (bCorrect) {
     totalCorrect += 1;
-    answerFeedback = `Correct! ${askedQuestion.question} equals ${answer}`;
+    answerFeedback = 'Correct!';
   } else {
     answerFeedback = `That answer is wrong, ${askedQuestion.question} equals ${askedQuestion.answer}`;
   }
