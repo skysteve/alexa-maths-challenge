@@ -61,6 +61,7 @@ export function getQuestion(): {answer: number, question: string} {
 
           // this shouldn't happen, but just in case
           if (safety >= 10 && answer < 0) {
+            answer += value;
             value = 0;
             break;
           }
