@@ -22,9 +22,9 @@ function random(min: number, max: number): number {
  */
 export function getQuestion(): {answer: number, question: string} {
   // length of question should be between 3-6 items long (this may become an option in dynamo at some point, maybe difficulty level)
-  const length = random(2, 4);
+  const length = random(3, 6);
   const min = 1;
-  const max = 10;
+  const max = 25;
 
   // get the initial value
   let answer = random(min, max * 2.5); // greater starting value
