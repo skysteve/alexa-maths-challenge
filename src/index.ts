@@ -30,9 +30,13 @@ export function handler(event: AlexaCustomSkillRequest, context: any, callback: 
     switch (request.intentName) {
       case 'HandleAnswer':
         return intents.handleAnswer(request, response);
+      case 'DontKnowIntent':
+            intents.dontKnowIntent(request, response);
       case 'AMAZON.StopIntent':
       case 'AMAZON.CancelIntent':
         return stopRequest(request, response);
+      case 'AMAZON.RepeatIntent':
+        return intents.repeat(request, response);
       default:
         return response.sendUnknownRequest();
     }
