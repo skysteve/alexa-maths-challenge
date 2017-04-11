@@ -1,4 +1,5 @@
 import {AlexaCustomSkillRequest, SkillRequest, SkillSession} from '../types/AlexaCustomSkillRequest';
+import {get as getFromDynamo} from './helpers/dynamoDb';
 
 declare var process;
 
@@ -53,6 +54,10 @@ export class Request {
 
   public hasSessionAttributes(): boolean {
     return Object.keys(this.sessionAttributes).length > 0;
+  }
+
+  public loadDynamoUser(): Promise<any> {
+    return getFromDynamo(this.userId);
   }
 
   public get requestType(): string {
