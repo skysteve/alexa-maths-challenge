@@ -3,6 +3,8 @@
     {"intent": "HandleAnswer", "slots": [{"name": "Answer", "type": "AMAZON.NUMBER"}]},
     {"intent": "AMAZON.HelpIntent"},
     {"intent": "AMAZON.StopIntent"},
-    {"intent": "AMAZON.CancelIntent"}
+    {"intent": "AMAZON.CancelIntent"},
+    {"intent": "AMAZON.RepeatIntent"},
+    {"intent": "DontKnowIntent"}
   ]
 }

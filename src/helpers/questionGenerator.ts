@@ -25,20 +25,23 @@ export function getQuestion(): {answer: number, question: string} {
   const length = random(3, 6);
   const min = 1;
   const max = 25;
+  const multiplyMax = 5;
 
   // get the initial value
   let answer = random(min, max * 2.5); // greater starting value
   let question = `${answer}`;
+  let explanation = `${question}`;
 
   for (let i = 0; i < length; i++) {
     let value = random(min, max);
 
-    switch (random(1, 6)) { // TODO 6 should be 9 in medium mode
+    switch (random(1, 9)) {
       case 1:
       case 2:
       case 3:
         answer += value;
         question += ` plus ${value},`;
+        explanation += ` plus ${value} equals ${answer},`;
         break;
       case 4:
       case 5:
@@ -68,12 +71,15 @@ export function getQuestion(): {answer: number, question: string} {
         }
 
         question += ` minus ${value},`;
+        explanation += ` minus ${value} equals ${answer},`;
         break;
       case 7:
       case 8:
       case 9:
+        value = random(1, multiplyMax);
         answer *= value;
         question += ` multiplied by ${value}.`;
+        explanation += ` multiplied ${value} equals ${answer},`;
         break;
       default:
         // should never happen
@@ -83,6 +89,7 @@ export function getQuestion(): {answer: number, question: string} {
 
   return {
     answer,
+    explanation,
     question: question.substring(0, question.length - 1) // strip off the final , because we get a ?
   };
 }

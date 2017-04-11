@@ -1,6 +1,7 @@
 import {Request} from '../Request';
 import {Response} from '../Response';
 import {getQuestion, getCongratulationsMessage} from '../helpers/questionGenerator';
+import {welcomeMessage} from './defaults';
 
 export function handleAnswer(request: Request, response: Response): void {
   const answer = Number(request.getSlotValue('Answer'));
@@ -59,7 +60,7 @@ export function handleAnswer(request: Request, response: Response): void {
     totalCorrect += 1;
     answerFeedback = 'Correct!';
   } else {
-    answerFeedback = `That answer is wrong, ${askedQuestion.question} equals ${askedQuestion.answer}`;
+    answerFeedback = `That answer is wrong, ${askedQuestion.explanation}`;
   }
 
   // if the user has had the requested number of questions - we're done!
@@ -86,4 +87,49 @@ export function handleAnswer(request: Request, response: Response): void {
   response.repomptText = `What is ${question.question}?`;
   response.send();
   return;
+}
+
+export function dontKnowIntent(request: Request, response: Response) {
+  const totalCorrect = request.getSessionAttribute('totalCorrect');
+  const totalQuestions = request.getSessionAttribute('totalQuestions');
+  const askedQuestion = request.getSessionAttribute('question');
+  let currentQuestionNumber = request.getSessionAttribute('currentQuestionNumber');
+  const answerFeedback = askedQuestion.explanation;
+
+  // if the user has had the requested number of questions - we're done!
+  if (currentQuestionNumber >= totalQuestions) {
+    response.speechText = `${answerFeedback}. Thank you for playing, you got ${totalCorrect} out of ${totalQuestions} questions correct. ${getCongratulationsMessage(totalQuestions, totalCorrect)}`;
+    response.endSession = true;
+    return response.send();
+  }
+
+  // increment question counter
+  currentQuestionNumber += 1;
+
+  // get the next question
+  const question = getQuestion();
+
+  // store values
+  response.addSessionAttributes({
+    currentQuestionNumber,
+    totalCorrect,
+    question
+  });
+
+  response.speechText = `${answerFeedback}. Question ${currentQuestionNumber}, What is ${question.question}?`;
+  response.repomptText = `What is ${question.question}?`;
+  response.send();
+  return;
+}
+
+export function repeat(request: Request, response: Response) {
+  if (request.getSessionAttribute('requestedQuestionCount')) {
+    return welcomeMessage(response);
+  }
+
+  const askedQuestion = request.getSessionAttribute('question');
+
+  response.speechText = `What is ${askedQuestion.question}?`;
+  response.repomptText = `What is ${askedQuestion.question}?`;
+  response.send();
 }
