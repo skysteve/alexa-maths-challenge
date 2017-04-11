@@ -35,13 +35,13 @@ export function getQuestion(): {answer: number, question: string} {
   for (let i = 0; i < length; i++) {
     let value = random(min, max);
 
-    switch (random(1, 9)) {
+    switch (random(1, 6)) { // Note - no multiply atm
       case 1:
       case 2:
       case 3:
         answer += value;
         question += ` plus ${value},`;
-        explanation += ` plus ${value} equals ${answer},`;
+        explanation += ` plus ${value}, equals ${answer}.`;
         break;
       case 4:
       case 5:
@@ -71,7 +71,7 @@ export function getQuestion(): {answer: number, question: string} {
         }
 
         question += ` minus ${value},`;
-        explanation += ` minus ${value} equals ${answer},`;
+        explanation += ` minus ${value}, equals ${answer}.`;
         break;
       case 7:
       case 8:
@@ -79,7 +79,7 @@ export function getQuestion(): {answer: number, question: string} {
         value = random(1, multiplyMax);
         answer *= value;
         question += ` multiplied by ${value}.`;
-        explanation += ` multiplied ${value} equals ${answer},`;
+        explanation += ` multiplied by ${value}, equals ${answer}.`;
         break;
       default:
         // should never happen

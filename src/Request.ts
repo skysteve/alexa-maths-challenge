@@ -59,6 +59,10 @@ export class Request {
     return this.request.type;
   }
 
+  public get requestReason(): string {
+    return this.request.reason;
+  }
+
   private get request(): SkillRequest {
     return this.event.request;
   }

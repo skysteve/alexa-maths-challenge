@@ -22,6 +22,18 @@ export function handler(event: AlexaCustomSkillRequest, context: any, callback: 
         return welcomeMessage(response);
       case 'IntentRequest':
         break;
+      case 'SessionEndedRequest':
+        if (request.requestReason === 'USER_INITIATED') {
+          return stopRequest(request, response);
+        } else if ('EXCEEDED_MAX_REPROMPTS') {
+          // just repeat it again
+          return intents.repeat(request, response);
+        } else {
+          console.error('SessionEndedRequest ERROR', JSON.stringify(event, null, 2));
+          response.speechText = 'Sorry an error occurred';
+          response.endSession = true;
+          return response.send();
+        }
       default:
         return response.sendUnknownRequest();
     }

@@ -1,5 +1,6 @@
 export type SkillRequest = {
   type: string;
+  reason: string;
   requestId: string;
   timestamp: string;
   locale: string;
