@@ -33,6 +33,7 @@ export function handleAnswer(request: Request, response: Response): void {
     }
 
     const question = getQuestion();
+    const questionText = answer === 1 ? 'question': 'questions';
 
     currentQuestionNumber = 1;
 
@@ -43,7 +44,7 @@ export function handleAnswer(request: Request, response: Response): void {
       question
     });
 
-    response.speechText = `Okay! ${answer} questions coming up! Question one, What is ${question.question}?`;
+    response.speechText = `Okay! ${answer} ${questionText} coming up! Question one, What is ${question.question}?`;
     response.repomptText = `What is ${question.question}?`;
     response.send();
     return;
