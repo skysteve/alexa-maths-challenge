@@ -20,7 +20,7 @@ function random(min: number, max: number): number {
  * Get a question
  * @returns {{answer: number, question: *}}
  */
-export function getQuestion(): {answer: number, question: string} {
+export function getQuestion(): {answer: number, question: string, explanation: string} {
   // length of question should be between 3-6 items long (this may become an option in dynamo at some point, maybe difficulty level)
   const length = random(3, 6);
   const min = 1;
