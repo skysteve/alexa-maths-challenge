@@ -24,7 +24,7 @@ export function getQuestion(): {answer: number, question: string, explanation: s
   // length of question should be between 3-6 items long (this may become an option in dynamo at some point, maybe difficulty level)
   const length = random(3, 6);
   const min = 1;
-  const max = 25;
+  const max = 10;
   const multiplyMax = 5;
 
   // get the initial value
