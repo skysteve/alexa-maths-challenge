@@ -70,7 +70,7 @@ export function getQuestion(): {answer: number, question: string, explanation: s
           }
         }
 
-        question += ` minus ${value},`;
+        question += ` minus ${value}. .`;
         explanation += ` minus ${value}, equals ${answer}.`;
         break;
       case 7:
