@@ -41,7 +41,7 @@ export function getQuestion(): {answer: number, question: string, explanation: s
       case 3:
         answer += value;
         question += ` plus ${value},`;
-        explanation += ` plus ${value}, equals ${answer}.`;
+        explanation += ` plus ${value}, is ${answer}.`;
         break;
       case 4:
       case 5:
@@ -71,7 +71,7 @@ export function getQuestion(): {answer: number, question: string, explanation: s
         }
 
         question += ` minus ${value}. .`;
-        explanation += ` minus ${value}, equals ${answer}.`;
+        explanation += ` minus ${value}, is ${answer}.`;
         break;
       case 7:
       case 8:
@@ -79,7 +79,7 @@ export function getQuestion(): {answer: number, question: string, explanation: s
         value = random(1, multiplyMax);
         answer *= value;
         question += ` multiplied by ${value}.`;
-        explanation += ` multiplied by ${value}, equals ${answer}.`;
+        explanation += ` multiplied by ${value}, is ${answer}.`;
         break;
       default:
         // should never happen
