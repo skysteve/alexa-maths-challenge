@@ -2,7 +2,7 @@ import {AlexaCustomSkillRequest} from '../types/AlexaCustomSkillRequest';
 import {AlexaCustomSkillResponse} from '../types/AlexaCustomSkillResponse';
 
 const RESPONSE_VERSION = '1.0';
-const SKILL_TITLE = 'Bin Man';
+const SKILL_TITLE = 'Maths Challenge';
 
 export class Response {
   private callback: Function;

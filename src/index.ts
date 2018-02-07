@@ -18,8 +18,6 @@ export function handler(event: AlexaCustomSkillRequest, context: any, callback: 
 
     // handle request type
     switch (request.requestType) {
-      case 'AMAZON.HelpIntent':
-        return helpMessage(response);
       case 'LaunchRequest':
         return welcomeMessage(response);
       case 'IntentRequest':
@@ -42,6 +40,8 @@ export function handler(event: AlexaCustomSkillRequest, context: any, callback: 
 
     // handle intents
     switch (request.intentName) {
+      case 'AMAZON.HelpIntent':
+        return helpMessage(response);
       case 'HandleAnswer':
         return intents.handleAnswer(request, response);
       case 'DontKnowIntent':
