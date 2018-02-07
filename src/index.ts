@@ -1,6 +1,6 @@
 import {AlexaCustomSkillRequest} from '../types/AlexaCustomSkillRequest';
 import * as intents from './handlers/intents';
-import {welcomeMessage, stopRequest} from './handlers/defaults';
+import {helpMessage, welcomeMessage, stopRequest} from './handlers/defaults';
 import {Request} from './Request';
 import {Response} from './Response';
 
@@ -18,6 +18,8 @@ export function handler(event: AlexaCustomSkillRequest, context: any, callback: 
 
     // handle request type
     switch (request.requestType) {
+      case 'AMAZON.HelpIntent':
+        return helpMessage(response);
       case 'LaunchRequest':
         return welcomeMessage(response);
       case 'IntentRequest':

@@ -1,6 +1,13 @@
 import {Request} from '../Request';
 import {Response} from '../Response';
 
+export function helpMessage(response: Response): void {
+  response.speechText = 'Welcome to the maths challenge. How many questions would you like?';
+  response.repomptText = 'How many questions would you like?';
+  response.addSessionAttributes({requestedQuestionCount: true});
+  response.send();
+}
+
 export function welcomeMessage(response: Response): void {
   response.speechText = 'Welcome to the maths challenge. How many questions would you like?';
   response.repomptText = 'How many questions would you like?';
