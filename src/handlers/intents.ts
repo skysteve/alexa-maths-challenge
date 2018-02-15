@@ -97,11 +97,13 @@ export function dontKnowIntent(request: Request, response: Response) {
   const askedQuestion = request.getSessionAttribute('question');
   let currentQuestionNumber = request.getSessionAttribute('currentQuestionNumber');
 
-  if (!requestedCount) {
+  if (!requestedCount || !askedQuestion) {
     response.speechText = 'Sorry I didn\'t understand that, your answer must be a number';
     response.endSession = false;
     return response.send();
   }
+
+  console.log('******', requestedCount);
 
   const answerFeedback = askedQuestion.explanation;
 
