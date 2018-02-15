@@ -91,19 +91,16 @@ export function handleAnswer(request: Request, response: Response): void {
 }
 
 export function dontKnowIntent(request: Request, response: Response) {
-  const requestedCount = request.getSessionAttribute('requestedQuestionCount');
   const totalCorrect = request.getSessionAttribute('totalCorrect');
   const totalQuestions = request.getSessionAttribute('totalQuestions');
   const askedQuestion = request.getSessionAttribute('question');
   let currentQuestionNumber = request.getSessionAttribute('currentQuestionNumber');
 
-  if (!requestedCount || !askedQuestion) {
+  if (!askedQuestion) {
     response.speechText = 'Sorry I didn\'t understand that, your answer must be a number';
     response.endSession = false;
     return response.send();
   }
-
-  console.log('******', requestedCount);
 
   const answerFeedback = askedQuestion.explanation;
 
